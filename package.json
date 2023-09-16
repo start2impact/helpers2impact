@@ -1,0 +1,8 @@
+{
+  "name": "helpers2impact",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:start2impact/helpers2impact.git",
+  "author": "Andrea Selmi <andrea@start2impact.com>",
+  "license": "MIT"
+}
