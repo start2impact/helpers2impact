@@ -1,2 +1,4 @@
-export { default as date } from "./helpers/date";
-export { default as colors } from "./helpers/colors";
+import date from "./helpers/date";
+import colors from "./helpers/colors";
+
+export { date, colors }
