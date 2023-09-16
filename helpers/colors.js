@@ -7,7 +7,7 @@ const colors = {
         return gradientStroke;
     },
 
-    progressColors = {
+    progressColors: {
         activeBackgroundColor: ctx => createGradient(ctx), // '#08F7A1';
         inactiveBackgroundColor: "#EDF1F4", // Light gray,
         blockedBackgroundColor: "#FF5A5F", // Red,
