@@ -28,31 +28,31 @@ const colors = {
 
         [...Array(projects_count)].map((project, index) => {
             if (projects_completed >= index + 1) {
-                return projectsColor.push(progressColors.activeBackgroundColor(context));
+                return projectsColor.push(this.progressColors.activeBackgroundColor(context));
             }
 
             // if the index is greater than zero, and completed projects are less than the current index
             if (index > 0 && projects_completed < index) {
-                return projectsColor.push(progressColors.inactiveBackgroundColor);
+                return projectsColor.push(this.progressColors.inactiveBackgroundColor);
             }
 
             // if project is sended but still not corrected
             if (project_sentnotcorrected !== null) {
-                return projectsColor.push(progressColors.waitingBackgroundColor);
+                return projectsColor.push(this.progressColors.waitingBackgroundColor);
             }
 
             // if project must be resended
             if (project_resend === true) {
-                return projectsColor.push(progressColors.resendBackgroundColor);
+                return projectsColor.push(this.progressColors.resendBackgroundColor);
             }
 
             // if project is blocked
             if (project_blocked_until !== null || project_retries > 0) {
-                return projectsColor.push(progressColors.blockedBackgroundColor);
+                return projectsColor.push(this.progressColors.blockedBackgroundColor);
             }
 
 
-            return projectsColor.push(progressColors.inactiveBackgroundColor);
+            return projectsColor.push(this.progressColors.inactiveBackgroundColor);
         });
 
         return projectsColor;
