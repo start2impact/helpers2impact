@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export default http = (cookieName, loginPath) => {
+const http = (cookieName, loginPath) => {
     const access_token = Cookies.get(cookieName);
 
     const http = axios.create({
@@ -46,6 +46,8 @@ export default http = (cookieName, loginPath) => {
         },
     );
 }
+
+export default http;
 
 
 
