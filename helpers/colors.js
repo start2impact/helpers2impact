@@ -1,3 +1,19 @@
+function createGradient(context, colorStart = "#007369", colorEnd = "#08F7A1") {
+    const { ctx } = context.chart;
+    const gradientStroke = ctx.createLinearGradient(0, 0, 0, 100);
+    gradientStroke.addColorStop(0, colorStart);
+    gradientStroke.addColorStop(1, colorEnd);
+    return gradientStroke;
+};
+
+const progressColors = {
+    activeBackgroundColor: ctx => createGradient(ctx), // '#08F7A1';
+    inactiveBackgroundColor: "#EDF1F4", // Light gray,
+    blockedBackgroundColor: "#FF5A5F", // Red,
+    waitingBackgroundColor: "#FFCB00", // Yellow,
+    resendBackgroundColor: "#F2994A", // Orange,
+}
+
 const colors = {
     createGradient(context, colorStart = "#007369", colorEnd = "#08F7A1") {
         const { ctx } = context.chart;
@@ -8,7 +24,7 @@ const colors = {
     },
 
     progressColors: {
-        activeBackgroundColor: ctx => this.createGradient(ctx), // '#08F7A1';
+        activeBackgroundColor: ctx => createGradient(ctx), // '#08F7A1';
         inactiveBackgroundColor: "#EDF1F4", // Light gray,
         blockedBackgroundColor: "#FF5A5F", // Red,
         waitingBackgroundColor: "#FFCB00", // Yellow,
@@ -28,31 +44,31 @@ const colors = {
 
         [...Array(projects_count)].map((project, index) => {
             if (projects_completed >= index + 1) {
-                return projectsColor.push(this.progressColors.activeBackgroundColor(context));
+                return projectsColor.push(progressColors.activeBackgroundColor(context));
             }
 
             // if the index is greater than zero, and completed projects are less than the current index
             if (index > 0 && projects_completed < index) {
-                return projectsColor.push(this.progressColors.inactiveBackgroundColor);
+                return projectsColor.push(progressColors.inactiveBackgroundColor);
             }
 
             // if project is sended but still not corrected
             if (project_sentnotcorrected !== null) {
-                return projectsColor.push(this.progressColors.waitingBackgroundColor);
+                return projectsColor.push(progressColors.waitingBackgroundColor);
             }
 
             // if project must be resended
             if (project_resend === true) {
-                return projectsColor.push(this.progressColors.resendBackgroundColor);
+                return projectsColor.push(progressColors.resendBackgroundColor);
             }
 
             // if project is blocked
             if (project_blocked_until !== null || project_retries > 0) {
-                return projectsColor.push(this.progressColors.blockedBackgroundColor);
+                return projectsColor.push(progressColors.blockedBackgroundColor);
             }
 
 
-            return projectsColor.push(this.progressColors.inactiveBackgroundColor);
+            return projectsColor.push(progressColors.inactiveBackgroundColor);
         });
 
         return projectsColor;
