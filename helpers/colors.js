@@ -8,7 +8,7 @@ const colors = {
     },
 
     progressColors: {
-        activeBackgroundColor: ctx => createGradient(ctx), // '#08F7A1';
+        activeBackgroundColor: ctx => this.createGradient(ctx), // '#08F7A1';
         inactiveBackgroundColor: "#EDF1F4", // Light gray,
         blockedBackgroundColor: "#FF5A5F", // Red,
         waitingBackgroundColor: "#FFCB00", // Yellow,
