@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const http = (cookieName, loginPath) => {
+const http = (cookieName, loginPath, isLogged = true) => {
     const access_token = Cookies.get(cookieName);
 
     const http = axios.create({
@@ -21,7 +21,8 @@ const http = (cookieName, loginPath) => {
         error => {
             const errorStatus = error.response ? error.response.status : null;
 
-            if (errorStatus === 401) {
+            // if user is logged and server response is 401 remove cookie and redirect on login page (ex: expired token)
+            if (errorStatus === 401 && isLogged) {
                 const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
                 Cookies.remove(cookieName, { domain });
                 window.location.href = loginPath;
