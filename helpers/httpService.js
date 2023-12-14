@@ -37,7 +37,7 @@ const http = (cookieName, loginPath, isLogged = true) => {
         error => {
             const errorStatus = error.response ? error.response.status : null;
 
-            if (errorStatus === 401) {
+            if (errorStatus === 401 && isLogged) {
                 const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
                 Cookies.remove(cookieName, { domain });
                 window.location.href = loginPath;
