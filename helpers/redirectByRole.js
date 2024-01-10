@@ -4,7 +4,7 @@ import config from "../config";
 
 
 
-export const redirectByRole = () => {
+const redirectByRole = () => {
     const { user } = checkCookie(config.cookieName);
 
     if (!user) {
@@ -22,3 +22,5 @@ export const redirectByRole = () => {
         window.location.href = process.env.REACT_APP_TALENT_URL;
     }
 };
+
+export default redirectByRole;
