@@ -1,11 +1,10 @@
 import { checkCookie } from "helpers2impact";
 
-import config from "../config";
 
 
 
-const redirectByRole = () => {
-    const { user } = checkCookie(config.cookieName);
+const redirectByRole = (cookieName) => {
+    const { user } = checkCookie(cookieName);
 
     if (!user) {
         return;
