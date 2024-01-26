@@ -47,6 +47,20 @@ const date = {
         return new Date(date1).getDate() === new Date(date2).getDate() && new Date(date1).getMonth() === new Date(date2).getMonth() && new Date(date1).getFullYear() === new Date(date2).getFullYear();
     },
 
+    // A fn for calculate days difference from today -> negative number is previous, positive for next
+    daysDifferenceFromToday(isoDate) {
+        const givenDate = new Date(isoDate);
+        const currentDate = new Date();
+
+        // Calculate different in milliseconds
+        const diffInMs = givenDate - currentDate;
+
+        // round to the nearest whole number
+        const diffInDays = Math.round(diffInMs / (1000 * 60 * 60 * 24));
+
+        return diffInDays;
+    },
+
 }
 
 export default date;
