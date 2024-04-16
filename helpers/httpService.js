@@ -22,11 +22,11 @@ const http = (cookieName, loginPath, isLogged = true) => {
             const errorStatus = error.response ? error.response.status : null;
 
             // if user is logged and server response is 401 remove cookie and redirect on login page (ex: expired token)
-            if (errorStatus === 401 && isLogged) {
-                const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
-                Cookies.remove(cookieName, { domain });
-                window.location.href = loginPath;
-            }
+            // if (errorStatus === 401 && isLogged) {
+            //     const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
+            //     Cookies.remove(cookieName, { domain });
+            //     window.location.href = loginPath;
+            // }
 
             return Promise.reject(error);
         },
@@ -37,11 +37,11 @@ const http = (cookieName, loginPath, isLogged = true) => {
         error => {
             const errorStatus = error.response ? error.response.status : null;
 
-            if (errorStatus === 401 && isLogged) {
-                const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
-                Cookies.remove(cookieName, { domain });
-                window.location.href = loginPath;
-            }
+            // if (errorStatus === 401 && isLogged) {
+            //     const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
+            //     Cookies.remove(cookieName, { domain });
+            //     window.location.href = loginPath;
+            // }
 
             return Promise.reject(error);
         },
