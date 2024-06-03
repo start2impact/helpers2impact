@@ -19,4 +19,6 @@ declare const colors: {
     };
     getProjectStatusColor(context: any, projects_completed?: number, project_sentnotcorrected?: null, project_resend?: boolean, project_blocked_until?: null, project_retries?: number, projects_count?: number): any;
 };
-export { date, checkCookie, colors };
+declare const redirectByRole: (cookieName: string) => void;
+export default redirectByRole;
+export { date, checkCookie, colors, redirectByRole };

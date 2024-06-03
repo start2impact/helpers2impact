@@ -156,4 +156,25 @@ const colors = {
 
 }
 
-export { date, checkCookie, colors }
+const redirectByRole = (cookieName: string) => {
+	const { user } = checkCookie(cookieName) || {};
+
+	if (!user) {
+		return;
+	}
+
+	if (user.role === "admin") {
+		window.location.href = process.env.REACT_APP_ADMIN_URL!;
+	}
+
+	else if (user.role === "coach") {
+		window.location.href = process.env.REACT_APP_COACH_URL!;
+	}
+	else {
+		window.location.href = process.env.REACT_APP_TALENT_URL!;
+	}
+};
+
+export default redirectByRole;
+
+export { date, checkCookie, colors, redirectByRole }

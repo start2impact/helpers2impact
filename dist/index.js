@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.colors = exports.checkCookie = exports.date = void 0;
+exports.redirectByRole = exports.colors = exports.checkCookie = exports.date = void 0;
 const js_cookie_1 = __importDefault(require("js-cookie"));
 const jwt_decode_1 = __importDefault(require("jwt-decode"));
 const date = {
@@ -127,3 +127,20 @@ const colors = {
     },
 };
 exports.colors = colors;
+const redirectByRole = (cookieName) => {
+    const { user } = checkCookie(cookieName) || {};
+    if (!user) {
+        return;
+    }
+    if (user.role === "admin") {
+        window.location.href = process.env.REACT_APP_ADMIN_URL;
+    }
+    else if (user.role === "coach") {
+        window.location.href = process.env.REACT_APP_COACH_URL;
+    }
+    else {
+        window.location.href = process.env.REACT_APP_TALENT_URL;
+    }
+};
+exports.redirectByRole = redirectByRole;
+exports.default = redirectByRole;
