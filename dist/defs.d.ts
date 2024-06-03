@@ -15,6 +15,9 @@ interface Session {
             points: number;
         };
     };
+    user_was: {
+        email: string;
+    };
     iat: number;
     exp: number;
     jti: string;
