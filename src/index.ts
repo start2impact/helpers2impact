@@ -175,6 +175,4 @@ const redirectByRole = (cookieName: string) => {
 	}
 };
 
-export default redirectByRole;
-
 export { date, checkCookie, colors, redirectByRole }

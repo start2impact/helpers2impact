@@ -143,4 +143,3 @@ const redirectByRole = (cookieName) => {
     }
 };
 exports.redirectByRole = redirectByRole;
-exports.default = redirectByRole;
