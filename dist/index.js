@@ -3,9 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.http = exports.date = void 0;
+exports.checkCookie = exports.http = exports.date = void 0;
 const axios_1 = __importDefault(require("axios"));
 const js_cookie_1 = __importDefault(require("js-cookie"));
+const jwt_decode_1 = __importDefault(require("jwt-decode"));
 const date = {
     getDateYearsAgo(numYearsAgo) {
         const today = new Date();
@@ -94,3 +95,14 @@ const http = (cookieName, loginPath, isLogged = true) => {
     return http;
 };
 exports.http = http;
+const checkCookie = (cookieName) => {
+    try {
+        const cookie = js_cookie_1.default.get(cookieName);
+        return cookie ? (0, jwt_decode_1.default)(cookie) : false;
+    }
+    catch (err) {
+        js_cookie_1.default.remove(cookieName);
+        return false;
+    }
+};
+exports.checkCookie = checkCookie;

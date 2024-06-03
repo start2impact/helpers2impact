@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
+import { Session } from "./defs";
 
 const date = {
 	getDateYearsAgo(numYearsAgo: number): Date {
@@ -66,8 +68,6 @@ const date = {
 
 }
 
-
-
 const http = (cookieName: string, loginPath: string, isLogged = true): AxiosInstance => {
 	const access_token = Cookies.get(cookieName);
 
@@ -117,4 +117,15 @@ const http = (cookieName: string, loginPath: string, isLogged = true): AxiosInst
 	return http;
 }
 
-export { date, http }
+const checkCookie = (cookieName: string): Session | false => {
+	try {
+		const cookie = Cookies.get(cookieName);
+		return cookie ? jwt_decode(cookie) : false;
+	}
+	catch (err) {
+		Cookies.remove(cookieName);
+		return false;
+	}
+};
+
+export { date, http, checkCookie }

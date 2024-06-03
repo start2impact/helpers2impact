@@ -1,4 +1,5 @@
 import { AxiosInstance } from "axios";
+import { Session } from "./defs";
 declare const date: {
     getDateYearsAgo(numYearsAgo: number): Date;
     calculateDaysFromToday(dateFrom: string): number;
@@ -8,4 +9,5 @@ declare const date: {
     isSameDay(date1: string, date2: string): boolean;
 };
 declare const http: (cookieName: string, loginPath: string, isLogged?: boolean) => AxiosInstance;
-export { date, http };
+declare const checkCookie: (cookieName: string) => Session | false;
+export { date, http, checkCookie };
