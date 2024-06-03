@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.redirectByRole = exports.colors = exports.checkCookie = exports.date = void 0;
+exports.array = exports.redirectByRole = exports.colors = exports.checkCookie = exports.date = void 0;
 const js_cookie_1 = __importDefault(require("js-cookie"));
 const jwt_decode_1 = __importDefault(require("jwt-decode"));
 const date = {
@@ -143,3 +143,9 @@ const redirectByRole = (cookieName) => {
     }
 };
 exports.redirectByRole = redirectByRole;
+const array = {
+    arrToChunks(arr = [], chuksSize = 10) {
+        return Array.from({ length: Math.ceil(arr.length / chuksSize) }, (_, i) => arr.slice(i * chuksSize, i * chuksSize + chuksSize));
+    }
+};
+exports.array = array;

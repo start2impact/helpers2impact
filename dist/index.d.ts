@@ -20,4 +20,7 @@ declare const colors: {
     getProjectStatusColor(context: any, projects_completed?: number, project_sentnotcorrected?: null, project_resend?: boolean, project_blocked_until?: null, project_retries?: number, projects_count?: number): any;
 };
 declare const redirectByRole: (cookieName: string) => void;
-export { date, checkCookie, colors, redirectByRole };
+declare const array: {
+    arrToChunks(arr?: never[], chuksSize?: number): never[][];
+};
+export { date, checkCookie, colors, redirectByRole, array };
