@@ -19,7 +19,7 @@ declare const colors: {
     };
     getProjectStatusColor(context: any, projects_completed?: number, project_sentnotcorrected?: null, project_resend?: boolean, project_blocked_until?: null, project_retries?: number, projects_count?: number): any;
 };
-declare const redirectByRole: (cookieName: string) => void;
+declare const redirectByRole: (cookieName: string, adminUrl: string, talentUrl: string, coachUrl: string) => void;
 declare const array: {
     arrToChunks(arr?: never[], chuksSize?: number): never[][];
 };

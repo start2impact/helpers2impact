@@ -156,7 +156,7 @@ const colors = {
 
 }
 
-const redirectByRole = (cookieName: string) => {
+const redirectByRole = (cookieName: string, adminUrl: string, talentUrl: string, coachUrl: string) => {
 	const { user } = checkCookie(cookieName) || {};
 
 	if (!user) {
@@ -164,14 +164,14 @@ const redirectByRole = (cookieName: string) => {
 	}
 
 	if (user.role === "admin") {
-		window.location.href = process.env.REACT_APP_ADMIN_URL!;
+		window.location.href = adminUrl;
 	}
 
 	else if (user.role === "coach") {
-		window.location.href = process.env.REACT_APP_COACH_URL!;
+		window.location.href = coachUrl;
 	}
 	else {
-		window.location.href = process.env.REACT_APP_TALENT_URL!;
+		window.location.href = talentUrl;
 	}
 };
 

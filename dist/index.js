@@ -127,19 +127,19 @@ const colors = {
     },
 };
 exports.colors = colors;
-const redirectByRole = (cookieName) => {
+const redirectByRole = (cookieName, adminUrl, talentUrl, coachUrl) => {
     const { user } = checkCookie(cookieName) || {};
     if (!user) {
         return;
     }
     if (user.role === "admin") {
-        window.location.href = process.env.REACT_APP_ADMIN_URL;
+        window.location.href = adminUrl;
     }
     else if (user.role === "coach") {
-        window.location.href = process.env.REACT_APP_COACH_URL;
+        window.location.href = coachUrl;
     }
     else {
-        window.location.href = process.env.REACT_APP_TALENT_URL;
+        window.location.href = talentUrl;
     }
 };
 exports.redirectByRole = redirectByRole;
