@@ -15,6 +15,9 @@ interface Session {
 			points: number
 		}
 	},
+	iat: number
+	exp: number
+	jti: string
 }
 
 export { Session }
