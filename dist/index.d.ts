@@ -1,4 +1,5 @@
-export declare const date: {
+import { AxiosInstance } from "axios";
+declare const date: {
     getDateYearsAgo(numYearsAgo: number): Date;
     calculateDaysFromToday(dateFrom: string): number;
     calculateDaysToToday(dateTo: string): number;
@@ -6,4 +7,5 @@ export declare const date: {
     isAfter(date: string, dateToCompare: string): boolean;
     isSameDay(date1: string, date2: string): boolean;
 };
-export default date;
+declare const http: (cookieName: string, loginPath: string, isLogged?: boolean) => AxiosInstance;
+export { date, http };

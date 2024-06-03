@@ -1,7 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.date = void 0;
-exports.date = {
+exports.http = exports.date = void 0;
+const axios_1 = __importDefault(require("axios"));
+const js_cookie_1 = __importDefault(require("js-cookie"));
+const date = {
     getDateYearsAgo(numYearsAgo) {
         const today = new Date();
         const dateYearsAgo = new Date(today.getFullYear() - numYearsAgo, today.getMonth(), today.getDate());
@@ -53,4 +58,39 @@ exports.date = {
     // 	return diffInDays;
     // },
 };
-exports.default = exports.date;
+exports.date = date;
+const http = (cookieName, loginPath, isLogged = true) => {
+    const access_token = js_cookie_1.default.get(cookieName);
+    const http = axios_1.default.create({
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        crossDomain: true,
+    });
+    http.interceptors.request.use(config => {
+        config.headers.Authorization = !access_token ? null : `Bearer ${access_token}`;
+        return config;
+    }, error => {
+        const errorStatus = error.response ? error.response.status : null;
+        // if user is logged and server response is 401 remove cookie and redirect on login page (ex: expired token)
+        if (errorStatus === 401 && isLogged) {
+            const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
+            js_cookie_1.default.remove(cookieName, { domain });
+            window.location.href = loginPath;
+        }
+        return Promise.reject(error);
+    });
+    http.interceptors.response.use(response => response, error => {
+        const errorStatus = error.response ? error.response.status : null;
+        if (errorStatus === 401 && isLogged) {
+            const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
+            js_cookie_1.default.remove(cookieName, { domain });
+            window.location.href = loginPath;
+        }
+        return Promise.reject(error);
+    });
+    return http;
+};
+exports.http = http;
