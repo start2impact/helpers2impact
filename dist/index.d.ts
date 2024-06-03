@@ -23,4 +23,5 @@ declare const redirectByRole: (cookieName: string, adminUrl: string, talentUrl: 
 declare const array: {
     arrToChunks(arr?: never[], chuksSize?: number): never[][];
 };
-export { date, checkCookie, colors, redirectByRole, array };
+declare const http: (cookieName: string, loginPath: string, isLogged?: boolean) => import("axios").AxiosInstance;
+export { date, checkCookie, colors, redirectByRole, array, http };

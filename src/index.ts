@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import { Session } from "./defs";
+import axios, { AxiosRequestConfig } from "axios";
 
 const date = {
 	getDateYearsAgo(numYearsAgo: number): Date {
@@ -181,4 +182,57 @@ const array = {
 	}
 }
 
-export { date, checkCookie, colors, redirectByRole, array }
+interface CustomAxiosRequestConfig extends AxiosRequestConfig {
+	crossDomain?: boolean;
+}
+
+const http = (cookieName: string, loginPath: string, isLogged = true) => {
+	const access_token = Cookies.get(cookieName);
+
+	const http = axios.create({
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
+		crossDomain: true,
+	} as CustomAxiosRequestConfig);
+
+	http.interceptors.request.use(
+		config => {
+			config.headers.Authorization = !access_token ? null : `Bearer ${access_token}`;
+			return config;
+		},
+		error => {
+			const errorStatus = error.response ? error.response.status : null;
+
+			// if user is logged and server response is 401 remove cookie and redirect on login page (ex: expired token)
+			if (errorStatus === 401 && isLogged) {
+				const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
+				Cookies.remove(cookieName, { domain });
+				window.location.href = loginPath;
+			}
+
+			return Promise.reject(error);
+		},
+	);
+
+	http.interceptors.response.use(
+		response => response,
+		error => {
+			const errorStatus = error.response ? error.response.status : null;
+
+			if (errorStatus === 401 && isLogged) {
+				const domain = window.location.host.includes("localhost") ? "localhost" : ".start2impact.it";
+				Cookies.remove(cookieName, { domain });
+				window.location.href = loginPath;
+			}
+
+			return Promise.reject(error);
+		},
+	);
+
+	return http;
+}
+
+export { date, checkCookie, colors, redirectByRole, array, http }
