@@ -68,7 +68,7 @@ const date = {
 
 }
 
-const http = (cookieName: string, loginPath: string, isLogged = true): AxiosInstance => {
+const http = (cookieName: string, loginPath: string, isLogged = true) => {
 	const access_token = Cookies.get(cookieName);
 
 	const http = axios.create({
@@ -77,6 +77,7 @@ const http = (cookieName: string, loginPath: string, isLogged = true): AxiosInst
 			"Content-Type": "application/json",
 			"Access-Control-Allow-Origin": "*",
 		},
+		crossDomain: true,
 	});
 
 	http.interceptors.request.use(

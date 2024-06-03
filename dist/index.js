@@ -68,6 +68,7 @@ const http = (cookieName, loginPath, isLogged = true) => {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
         },
+        crossDomain: true,
     });
     http.interceptors.request.use(config => {
         config.headers.Authorization = !access_token ? null : `Bearer ${access_token}`;
