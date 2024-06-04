@@ -13,7 +13,8 @@
     }
   },
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "test": "jest"
   },
   "repository": "git@github.com:start2impact/helpers2impact.git",
   "author": "Andrea Selmi <andrea@start2impact.com>",
@@ -24,8 +25,11 @@
     "jwt-decode": "^3.1.2"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.14.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.4",
     "typescript": "^5.4.5",
     "vite": "^5.2.12",
     "vite-plugin-dts": "^3.9.1"
