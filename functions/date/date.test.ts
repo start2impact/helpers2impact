@@ -19,3 +19,17 @@ describe("check if the second date argument is after the first one", () => {
 		expect(date.isAfter(date1, date2)).toBe(false);
 	});
 });
+
+describe("check if the two dates are the same day", () => {
+	test("should return true if the two dates are the same day", () => {
+		const date1 = new Date("2022-01-01");
+		const date2 = new Date("2022-01-01");
+		expect(date.isSameDay(date1, date2)).toBe(true);
+	});
+
+	test("should return false if the two dates are not the same day", () => {
+		const date1 = new Date("2022-01-01");
+		const date2 = new Date("2022-01-02");
+		expect(date.isSameDay(date1, date2)).toBe(false);
+	});
+});
