@@ -13,7 +13,7 @@
     }
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && vite build"
   },
   "repository": "git@github.com:start2impact/helpers2impact.git",
   "author": "Andrea Selmi <andrea@start2impact.com>",
@@ -26,9 +26,13 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.14.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.12"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "axios": "^1.7.2",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^3.1.2"
   }
 }
