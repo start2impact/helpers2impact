@@ -1,6 +1,7 @@
 import { date } from "./date";
 
-describe("check if the second date argument is after the first one", () => {
+describe("check if the second date argument is after the first one", () => { // qui parlare realmente di cosa sto facendo: 
+	// quindi sto testando la funzione isAfter che verifica questo
 	test("should return true if the second date is after the first one", () => {
 		const date1 = new Date("2022-01-01");
 		const date2 = new Date("2022-01-02");
