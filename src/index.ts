@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
-import { Session } from "./defs";
+import { Nullable, Session } from "./defs";
 import axios, { AxiosRequestConfig } from "axios";
 
 const date = {
@@ -115,9 +115,9 @@ const colors = {
 	getProjectStatusColor(
 		context: any,
 		projects_completed = 0,
-		project_sentnotcorrected = null,
-		project_resend = false,
-		project_blocked_until = null,
+		project_sentnotcorrected: Nullable<boolean> = null,
+		project_resend: Nullable<boolean> = false,
+		project_blocked_until: Nullable<string> = null,
 		project_retries = 0,
 		projects_count = 0,
 	) {

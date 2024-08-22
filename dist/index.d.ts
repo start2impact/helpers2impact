@@ -1,4 +1,4 @@
-import { Session } from './defs';
+import { Nullable, Session } from './defs';
 
 declare const date: {
     getDateYearsAgo(numYearsAgo: number): Date;
@@ -18,7 +18,7 @@ declare const colors: {
         waitingBackgroundColor: string;
         resendBackgroundColor: string;
     };
-    getProjectStatusColor(context: any, projects_completed?: number, project_sentnotcorrected?: null, project_resend?: boolean, project_blocked_until?: null, project_retries?: number, projects_count?: number): any;
+    getProjectStatusColor(context: any, projects_completed?: number, project_sentnotcorrected?: Nullable<boolean>, project_resend?: Nullable<boolean>, project_blocked_until?: Nullable<string>, project_retries?: number, projects_count?: number): any;
 };
 declare const redirectByRole: (cookieName: string, adminUrl: string, talentUrl: string, coachUrl: string) => void;
 declare const array: {

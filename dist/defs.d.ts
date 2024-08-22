@@ -1,3 +1,4 @@
+export type Nullable<T> = T | null | undefined;
 interface Session {
     user: {
         id: string;
