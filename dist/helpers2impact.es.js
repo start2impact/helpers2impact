@@ -38,9 +38,9 @@ const C = {
 }, w = (e) => {
   try {
     const t = i.get(e);
-    return t ? f(t) : !1;
+    return t ? f(t) : null;
   } catch {
-    return i.remove(e), !1;
+    return i.remove(e), null;
   }
 }, d = (e, t = "#007369", n = "#08F7A1") => {
   const { ctx: r } = e.chart, o = r.createLinearGradient(0, 0, 0, 100);

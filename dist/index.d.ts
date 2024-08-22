@@ -8,7 +8,7 @@ declare const date: {
     isAfter(date: string, dateToCompare: string): boolean;
     isSameDay(date1: string, date2: string): boolean;
 };
-declare const checkCookie: (cookieName: string) => Session | false;
+declare const checkCookie: (cookieName: string) => Session | null;
 declare const colors: {
     createGradient(context: any, colorStart?: string, colorEnd?: string): any;
     progressColors: {

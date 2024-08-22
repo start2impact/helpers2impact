@@ -68,14 +68,14 @@ const date = {
 
 }
 
-const checkCookie = (cookieName: string): Session | false => {
+const checkCookie = (cookieName: string): Session | null => {
 	try {
 		const cookie = Cookies.get(cookieName);
-		return cookie ? jwt_decode(cookie) : false;
+		return cookie ? jwt_decode(cookie) : null;
 	}
 	catch (err) {
 		Cookies.remove(cookieName);
-		return false;
+		return null;
 	}
 };
 
