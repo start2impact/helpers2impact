@@ -22,7 +22,7 @@ declare const colors: {
 };
 declare const redirectByRole: (cookieName: string, adminUrl: string, talentUrl: string, coachUrl: string) => void;
 declare const array: {
-    arrToChunks(arr?: never[], chuksSize?: number): never[][];
+    arrToChunks(arr?: any[], chuksSize?: number): any[][];
 };
 declare const http: (cookieName: string, loginPath: string, isLogged?: boolean) => import('axios').AxiosInstance;
 export { date, checkCookie, colors, redirectByRole, array, http };
