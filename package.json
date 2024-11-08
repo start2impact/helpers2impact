@@ -1,8 +1,14 @@
 {
-  "name": "helpers2impact",
-  "version": "1.0.0",
+  "name": "@start2impact/helpers2impact",
+  "version": "1.0.2",
+  "repository": "git@github.com:start2impact/helpers2impact.git",
+  "author": "Andrea Selmi <andrea@start2impact.com>",
   "description": "",
   "main": "dist/index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "files": [
     "dist"
   ],
@@ -15,9 +21,6 @@
   "scripts": {
     "build": "vite build"
   },
-  "repository": "git@github.com:start2impact/helpers2impact.git",
-  "author": "Andrea Selmi <andrea@start2impact.com>",
-  "license": "MIT",
   "dependencies": {
     "axios": "^1.7.2",
     "js-cookie": "^3.0.5",
